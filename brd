@@ -1,0 +1,34 @@
+from abc import ABC, abstractmethod
+
+# Абстракція
+class Abstraction:
+    def __init__(self, implementation):
+        self.implementation = implementation
+
+    def operation(self):
+        return f"Abstraction: Base operation with\n{self.implementation.operation_implementation()}"
+
+# Реалізація абстракції
+class Implementation(ABC):
+    @abstractmethod
+    def operation_implementation(self):
+        pass
+
+# Конкретна реалізація 1
+class ConcreteImplementationA(Implementation):
+    def operation_implementation(self):
+        return "ConcreteImplementationA: Here's the result on the platform A."
+
+# Конкретна реалізація 2
+class ConcreteImplementationB(Implementation):
+    def operation_implementation(self):
+        return "ConcreteImplementationB: Here's the result on the platform B."
+
+# Використання
+implementation_a = ConcreteImplementationA()
+abstraction_a = Abstraction(implementation_a)
+print(abstraction_a.operation())
+
+implementation_b = ConcreteImplementationB()
+abstraction_b = Abstraction(implementation_b)
+print(abstraction_b.operation())
